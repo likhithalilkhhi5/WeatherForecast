@@ -37,4 +37,12 @@ public class HomeController {
 		System.out.println(wr);
 		return "response";
 	}
+	//testing for vunlerabilities
+	@PostMapping("/")
+        public String search(@RequestParam Map<String, String> body, Model model) {
+        model.addAttribute("zipCode", body.get("zipCode"));
+        List<Object[]> results = providerSearchDAO.getProvidersInZipCode(body.get("zipCode"));
+        model.addAttribute("results", results);
+        return "index";
+    }
 }
